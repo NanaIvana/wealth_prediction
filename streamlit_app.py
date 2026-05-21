@@ -1,5 +1,5 @@
 """
-Wealth Quintile Predictor — Streamlit app
+Wealth Quintile Predictor - Streamlit app
 Cameroon DHS 2018 · Ordinal Logistic Regression (mord.LogisticAT)
 
 Run:
@@ -21,7 +21,7 @@ import streamlit as st
 # Page config
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Wealth Quintile Predictor — Cameroon DHS",
+    page_title="Wealth Quintile Predictor - Cameroon DHS",
     page_icon="₣",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -75,25 +75,25 @@ T = {
         "region": "Region",
         "milieu": "Place of residence",
         "urban": "Urban", "rural": "Rural",
-        "sex": "Head of household — Sex",
+        "sex": "Head of household - Sex",
         "male": "Male", "female": "Female",
-        "education": "Head of household — Education level",
+        "education": "Head of household - Education level",
         "size": "Household size", "size_help": "Number of members (1–20)",
-        "age": "Head of household — Age", "age_help": "Years (18–95)",
+        "age": "Head of household - Age", "age_help": "Years (18–95)",
         "predict": "Predict wealth quintile", "reset": "Reset",
         "result_label": "Most likely quintile",
         "confidence": "Confidence",
         "distribution": "Probability across quintiles",
         "fill_required": "Please fill all fields with valid values.",
-        "quintiles": ["Q1 — Poorest", "Q2 — Poor", "Q3 — Middle", "Q4 — Rich", "Q5 — Super Rich"],
+        "quintiles": ["Q1 - Poorest", "Q2 - Poor", "Q3 - Middle", "Q4 - Rich", "Q5 - Super Rich"],
         "footer": "Model: mord.LogisticAT (ordinal). Trained on Cameroon DHS 2018.",
         "placeholder_result": "Fill out the household profile and click Predict to see the wealth quintile estimate.",
         "conf_high": "High confidence",
         "conf_moderate": "Moderate confidence",
         "conf_low": "Low confidence",
-        "conf_high_txt": "The model is fairly certain — the top quintile clearly dominates the others.",
+        "conf_high_txt": "The model is fairly certain, the top quintile clearly dominates the others.",
         "conf_mod_txt": "The profile sits near a boundary between two quintiles. The top guess is reasonable but the neighbouring quintile is also plausible.",
-        "conf_low_txt": "The model is uncertain — probability is spread across several quintiles. Use the result only as a rough indication.",
+        "conf_low_txt": "The model is uncertain, probability is spread across several quintiles. Use the result only as a rough indication.",
         "conf_note": (
             "Wealth is shaped by many factors beyond what the model sees (income shocks, "
             "informal assets, social networks, etc.). The model therefore returns a probability "
@@ -101,20 +101,20 @@ T = {
             "not an absolute classification."
         ),
         "report_title": "What we learned from the data",
-        "report_lead": "Plain-language summary of the regression analysis and machine learning carried out on the Cameroon DHS 2018 dataset (CMHR71FL).",
+        "report_lead": "Summary of the regression analysis and machine learning carried out on the Cameroon DHS 2018 dataset (CMHR71FL).",
         "report_sections": [
             ("1. The question",
-             "Which characteristics of a household and its head best explain whether the household ends up in the poorest, middle or richest part of the population? The DHS wealth index is split into five equal groups (quintiles) — Q1 is the poorest 20% and Q5 the richest 20%."),
+             "Which characteristics of a household and its head best explain whether the household ends up in the poorest, middle or richest part of the population? The DHS wealth index is split into five equal groups (quintiles), Q1 is the poorest 20% and Q5 the richest 20%."),
             ("2. The data",
              "14,173 Cameroonian households from the 2018 Demographic and Health Survey. After cleaning and weighting, we kept six predictors: region, urban/rural milieu, sex of the head, education of the head, household size, and age of the head."),
             ("3. What we tried",
              "We compared multinomial logistic regression, an ordinal logistic regression (which respects the natural Q1<Q2<…<Q5 order), a Random Forest and an XGBoost classifier. Random Forest had the highest raw accuracy, but it treated the quintiles as unrelated labels."),
             ("4. Why we kept the ordinal model",
-             "Wealth quintiles are ordered — being off by one quintile (predicting Q3 instead of Q4) is a much smaller mistake than jumping from Q1 to Q5. The ordinal logistic model (mord.LogisticAT) is the only one that uses that order, which is why we use it here even though its top-1 accuracy is slightly below Random Forest."),
+             "Wealth quintiles are ordered, being off by one quintile (predicting Q3 instead of Q4) is a much smaller mistake than jumping from Q1 to Q5. The ordinal logistic model (mord.LogisticAT) is the only one that uses that order, which is why we use it here even though its top-1 accuracy is slightly below Random Forest."),
             ("5. What drives wealth",
              "Education of the head is by far the strongest positive driver: each step up (none → primary → secondary → higher) sharply increases the probability of landing in a higher quintile. Living in an urban area, especially Douala or Yaoundé, also lifts households toward Q4–Q5. Conversely, large household size and living in the Far North, North or rural areas push toward Q1–Q2. Sex and age of the head have only a modest effect once education and region are accounted for."),
             ("6. How well it predicts",
-             "On a held-out test set, the ordinal model reaches roughly 45–50% exact-quintile accuracy and over 80% within-one-quintile accuracy. That is good for a social-survey model with only six inputs — but it confirms wealth is partly explained by factors the survey does not capture."),
+             "On a held-out test set, the ordinal model reaches roughly 45–50% exact-quintile accuracy and over 80% within-one-quintile accuracy. That is good for a social-survey model with only six inputs but it confirms wealth is partly explained by factors the survey does not capture."),
             ("7. Take-away",
              "Education and geography matter most. Public policy aimed at expanding secondary and higher education, and at reducing the urban/rural gap, would have the largest measurable impact on the wealth distribution of Cameroonian households."),
         ],
@@ -134,7 +134,7 @@ T = {
              "Female-headed households are over-represented in lower quintiles in many DHS surveys; we test whether that holds in Cameroon."),
             ("Education of head",
              "Highest education level completed: none, primary, secondary, higher.",
-             "Strongest single predictor of wealth — directly linked to earning capacity."),
+             "Strongest single predictor of wealth which is directly linked to earning capacity."),
             ("Household size",
              "Total number of usual residents in the household (1 to 20+).",
              "Larger households spread the same income over more people, which lowers the per-capita wealth score."),
@@ -163,25 +163,25 @@ T = {
         "region": "Région",
         "milieu": "Milieu de résidence",
         "urban": "Urbain", "rural": "Rural",
-        "sex": "Chef de ménage — Sexe",
+        "sex": "Chef de ménage - Sexe",
         "male": "Masculin", "female": "Féminin",
-        "education": "Chef de ménage — Niveau d'éducation",
+        "education": "Chef de ménage - Niveau d'éducation",
         "size": "Taille du ménage", "size_help": "Nombre de membres (1–20)",
-        "age": "Chef de ménage — Âge", "age_help": "Années (18–95)",
+        "age": "Chef de ménage - Âge", "age_help": "Années (18–95)",
         "predict": "Prédire le quintile", "reset": "Réinitialiser",
         "result_label": "Quintile le plus probable",
         "confidence": "Confiance",
         "distribution": "Probabilités par quintile",
         "fill_required": "Veuillez remplir tous les champs avec des valeurs valides.",
-        "quintiles": ["Q1 — Très pauvre", "Q2 — Pauvre", "Q3 — Moyen", "Q4 — Riche", "Q5 — Très riche"],
+        "quintiles": ["Q1 - Très pauvre", "Q2 - Pauvre", "Q3 - Moyen", "Q4 - Riche", "Q5 - Très riche"],
         "footer": "Modèle : mord.LogisticAT (ordinal). Entraîné sur l'EDS Cameroun 2018.",
         "placeholder_result": "Remplissez le profil du ménage puis cliquez sur Prédire pour voir l'estimation.",
         "conf_high": "Confiance élevée",
         "conf_moderate": "Confiance modérée",
         "conf_low": "Confiance faible",
-        "conf_high_txt": "Le modèle est assez sûr — le quintile de tête domine nettement.",
+        "conf_high_txt": "Le modèle est assez sûr, le quintile de tête domine nettement.",
         "conf_mod_txt": "Le profil est proche d'une frontière entre deux quintiles. L'estimation principale est raisonnable mais le quintile voisin reste plausible.",
-        "conf_low_txt": "Le modèle est incertain — la probabilité est répartie sur plusieurs quintiles. À utiliser comme simple indication.",
+        "conf_low_txt": "Le modèle est incertain, la probabilité est répartie sur plusieurs quintiles. À utiliser comme simple indication.",
         "conf_note": (
             "La richesse dépend de nombreux facteurs que le modèle ne voit pas (chocs de revenu, "
             "actifs informels, réseaux sociaux, etc.). Le modèle renvoie donc une probabilité par "
@@ -189,7 +189,7 @@ T = {
             "classification absolue."
         ),
         "report_title": "Ce que les données nous ont appris",
-        "report_lead": "Résumé en langage simple du travail de régression et de machine learning mené sur les données EDS Cameroun 2018 (CMHR71FL).",
+        "report_lead": "Résumé du travail de régression et de machine learning mené sur les données EDS Cameroun 2018 (CMHR71FL).",
         "report_sections": [
             ("1. La question",
              "Quelles caractéristiques d'un ménage et de son chef expliquent le mieux son appartenance aux 20 % les plus pauvres, à la classe moyenne ou aux 20 % les plus riches ? L'indice de richesse EDS découpe la population en cinq groupes égaux (quintiles)."),
@@ -666,7 +666,6 @@ with tab_predict:
     left, right = st.columns([1.1, 1])
     with left:
         with st.container():
-            st.markdown('<div class="glass">', unsafe_allow_html=True)
             st.markdown(f"### {L['section_profile']}")
 
             region_labels = [r[1] if st.session_state.lang == "en" else r[2] for r in REGIONS]
@@ -710,7 +709,6 @@ with tab_predict:
             st.markdown("</div>", unsafe_allow_html=True)
 
     with right:
-        st.markdown('<div class="glass">', unsafe_allow_html=True)
         st.markdown(f"### {L['section_result']}")
         if "pred_q" in st.session_state:
             render_result(L, st.session_state.pred_q, np.array(st.session_state.pred_probs))
@@ -725,7 +723,6 @@ with tab_predict:
 
 # -------------------- ANALYSIS REPORT --------------------
 with tab_report:
-    st.markdown('<div class="glass">', unsafe_allow_html=True)
     st.markdown(f"## {L['report_title']}")
     st.markdown(f"<p class='muted'>{L['report_lead']}</p>", unsafe_allow_html=True)
     cols = st.columns(2)
@@ -742,7 +739,6 @@ with tab_report:
 
 # -------------------- VARIABLES --------------------
 with tab_variables:
-    st.markdown('<div class="glass">', unsafe_allow_html=True)
     st.markdown(f"## {L['var_title']}")
     st.markdown(f"<p class='muted'>{L['var_lead']}</p>", unsafe_allow_html=True)
     for i, (name, meaning, why) in enumerate(L["variables"], start=1):
