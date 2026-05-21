@@ -4,3 +4,4 @@ pandas>=2.1
 scikit-learn>=1.4
 mord>=0.7
 pyreadstat>=1.2
+plotly>=5.15
